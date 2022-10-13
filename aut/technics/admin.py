@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ItTechnicsModels,ModuleOrganization
+from .models import ItTechnicsModels, ModuleOrganization
 
 
 
@@ -7,14 +7,21 @@ from .models import ItTechnicsModels,ModuleOrganization
 class ItTechnicsModels(admin.ModelAdmin):
     list_display = (
         'name',
+        'name1',
         'add_date',
         'categorian',
         'organization',
+        'img'
     )
 
-    list_filter = ('name', 'categorian', 'add_date',)
-    list_editable = ('categorian', 'add_date','organization',)
+    list_filter = ('name','name1', 'categorian', 'add_date','organization',)
+    list_editable = ('categorian', 'add_date','organization','name1',)
     list_per_page = 20
+    search_fields = (
+       'add_date',
+    )
+
+
 
 @admin.register(ModuleOrganization)
 class ModuleOrganization(admin.ModelAdmin):

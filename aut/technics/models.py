@@ -48,3 +48,14 @@ class ItTechnicsModels(models.Model):
         null=True,
 
     )
+
+    name1 = models.CharField(
+        max_length=60,
+        verbose_name='Наименование Техники',
+    )
+    img = models.ImageField(
+        upload_to='products_images',
+        verbose_name='Изображение'
+
+
+     )
