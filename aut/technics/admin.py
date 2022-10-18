@@ -22,8 +22,7 @@ class ItTechnicsModels(admin.ModelAdmin):
         'date_start',
         'date_end',
         'date_max',
-        'decommissioning_date',
-        'categorian',
+        # 'decommissioning_date',
         'organization',
         'img',
         'wifi_availability',
@@ -34,9 +33,8 @@ class ItTechnicsModels(admin.ModelAdmin):
         'date_end_Kanoe',
     )
 
-    list_select_related = True
 
-    list_filter = ('type','categorian',)
+    list_filter = ('type','organization',)
     list_editable = ()
     list_per_page = 20
     search_fields = (

@@ -26,6 +26,10 @@ class ModuleOrganization(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Подразделение"
+        verbose_name_plural = "Подразделения"
+
 
 class ItTechnicsType(models.Model):
     id = models.AutoField(
@@ -48,6 +52,11 @@ class ItTechnicsType(models.Model):
     def __str__(self):
         return self.name
 
+
+    class Meta:
+        verbose_name = "Тип техники"
+        verbose_name_plural = "Вид техники"
+
 class ItTechnicsModels(models.Model):
     id = models.AutoField(
         primary_key=True,
@@ -58,34 +67,32 @@ class ItTechnicsModels(models.Model):
         ItTechnicsType,
         on_delete=models.CASCADE,
         db_column='name',
-        verbose_name='Наименование Техники',
+        verbose_name='Тип',
     )
     id_name = models.CharField(
         max_length=60,
-        verbose_name='Инвентарный номер',
+        verbose_name='Инвентарный №',
     )
     date_start =models.DateField(
-        verbose_name='Дата ввода в эксплуатацию',
+        verbose_name='Ввод в эксплуатацию',
         null=True,
     )
     date_end = models.DateField(
-        verbose_name='Дата окончания',
+        verbose_name='Вывод',
         null=True,
     )
     date_max = models.DurationField(
         verbose_name='MAX Период эксплуатации',
         null=True,
     )
-    decommissioning_date = models.DateField(
-        verbose_name='Дата вывода из эксплуатации',
-        null=True,
-    )
-    categorian = models.BooleanField(
-        verbose_name='Категорированная',
-    )
+    # decommissioning_date = models.DateField(
+    #     verbose_name='Дата вывода из эксплуатации',
+    #     null=True,
+    # )
+
     organization= models.ForeignKey(
         ModuleOrganization,
-        verbose_name='Организация',
+        verbose_name='В/Ч',
         on_delete=models.CASCADE,
         null=True,
 
@@ -96,24 +103,26 @@ class ItTechnicsModels(models.Model):
                 ('В наличии/не изымалось', 'В наличии/не изымалось'),
             )
     wifi_availability = models.CharField(
+        verbose_name="Wifi",
         max_length= 100,
         choices=SIZES,
     )
 
     date_shutdown = models.DateField(
-        verbose_name='Дата Изъятия модуля БПД',
+        verbose_name='Изъятие WIFI',
         null=True,
     )
 
     serial_numbers_device = models.CharField(
         max_length=60,
-        verbose_name=' Серийный номер модуля',
+        verbose_name='S/N модуля',
+        help_text="Серийный номер wifi модуля"
     )
 
     img = models.ImageField(
         null=True,
         upload_to='products_images',
-        verbose_name='Изображение',
+        verbose_name='Файл',
         blank=True,
      )
     number_information = models.CharField(
@@ -122,10 +131,13 @@ class ItTechnicsModels(models.Model):
     )
 
     date_start_Kanoe = models.DateField(
-        verbose_name='Дата установки ПО КАНОЭ',
+        verbose_name='Установка ПО КАНОЭ',
         null=True,
     )
     date_end_Kanoe = models.DateField(
-        verbose_name='Дата окончания ПО КАНОЭ',
+        verbose_name='Окончание ПО КАНОЭ',
         null=True,
     )
+    class Meta:
+        verbose_name = "Технику"
+        verbose_name_plural = "Техника"
