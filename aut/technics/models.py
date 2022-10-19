@@ -5,7 +5,7 @@ from django.db import models
 
 class ModuleOrganization(models.Model):
     """
-    Класс для описания модели линии доступа по направлению деятельности
+    Класс для описания модели линии доступа по направлению деятельности sdfdfd
     """
     parent_id = models.AutoField(
         primary_key=True,
