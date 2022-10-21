@@ -1,84 +1,32 @@
 from django.db import models
 
+from list_tech.models import ModuleOrganization, ItTechnicsType
 
-# Create your models here.
-
-class ModuleOrganization(models.Model):
-    """
-    Класс для описания модели линии доступа по направлению деятельности sdfdfd
-    """
-    parent_id = models.AutoField(
-        primary_key=True,
-        verbose_name='id',
-        unique=True,
-
-    )
-    name = models.CharField(
-        max_length=60,
-        verbose_name='Наименование',
-    )
-
-    description = models.CharField(
-        max_length=60,
-        verbose_name='Описание',
-    )
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Подразделение"
-        verbose_name_plural = "Подразделения"
-
-
-class ItTechnicsType(models.Model):
-    id = models.AutoField(
-        primary_key=True,
-        verbose_name='id',
-        unique=True,
-    )
-    name= models.CharField(
-        max_length=60,
-        verbose_name='Тип техники',
-    )
-
-    description= models.CharField(
-        max_length=60,
-        verbose_name='Дополнительное описание',
-        blank=True
-
-    )
-
-    def __str__(self):
-        return self.name
-
-
-    class Meta:
-        verbose_name = "Тип техники"
-        verbose_name_plural = "Вид техники"
 
 class ItTechnicsModels(models.Model):
     id = models.AutoField(
         primary_key=True,
         verbose_name='№',
-
+        
     )
     type = models.ForeignKey(
         ItTechnicsType,
         on_delete=models.CASCADE,
         db_column='name',
         verbose_name='Тип',
+    
     )
     id_name = models.CharField(
         max_length=60,
-        verbose_name='Инвентарный №',
+        verbose_name='Инвентарный №_ИТ',
+        null=True,
     )
     date_start =models.DateField(
         verbose_name='Ввод в эксплуатацию',
         null=True,
     )
     date_end = models.DateField(
-        verbose_name='Вывод',
+        verbose_name='Вывод из эксплуатации',
         null=True,
     )
     date_max = models.DurationField(
@@ -105,7 +53,8 @@ class ItTechnicsModels(models.Model):
     wifi_availability = models.CharField(
         verbose_name="Wifi",
         max_length= 100,
-        choices=SIZES,
+        choices=SIZES,  
+        null=True,
     )
 
     date_shutdown = models.DateField(
@@ -113,11 +62,7 @@ class ItTechnicsModels(models.Model):
         null=True,
     )
 
-    serial_numbers_device = models.CharField(
-        max_length=60,
-        verbose_name='S/N модуля',
-        help_text="Серийный номер wifi модуля"
-    )
+
 
     img = models.ImageField(
         null=True,
@@ -128,7 +73,7 @@ class ItTechnicsModels(models.Model):
     number_information = models.CharField(
         max_length= 7,
         verbose_name='Номер СВТ',
-    )
+        null = True,)
 
     date_start_Kanoe = models.DateField(
         verbose_name='Установка ПО КАНОЭ',

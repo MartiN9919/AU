@@ -1,17 +1,8 @@
+from tabnanny import verbose
 from django.contrib import admin
-from .models import ItTechnicsModels, ModuleOrganization, ItTechnicsType
+from .models import ItTechnicsModels
+from django.utils.safestring import mark_safe
 
-
-@admin.register(ItTechnicsType)
-class ItTechnicsType(admin.ModelAdmin):
-    list_display = (
-        'id',
-        'name',
-        'description',
-    )
-
-    list_filter = ('name', 'description',)
-    list_per_page = 30
 @admin.register(ItTechnicsModels)
 class ItTechnicsModels(admin.ModelAdmin):
 
@@ -24,13 +15,8 @@ class ItTechnicsModels(admin.ModelAdmin):
         'date_max',
         # 'decommissioning_date',
         'organization',
-        'img',
-        'wifi_availability',
-        'date_shutdown',
-        'serial_numbers_device',
-        'number_information',
-        'date_start_Kanoe',
-        'date_end_Kanoe',
+        'get_image',
+          
     )
 
 
@@ -40,16 +26,6 @@ class ItTechnicsModels(admin.ModelAdmin):
     search_fields = (
     )
 
-
-
-@admin.register(ModuleOrganization)
-class ModuleOrganization(admin.ModelAdmin):
-    list_display = (
-        'parent_id',
-        'name',
-        'description',
-    )
-    list_filter = ('name', 'description',)
-    list_per_page = 30
-
-#davsdbvvsdvs
+    def get_image(self, obj):
+        return mark_safe(f'<img src="{obj.img.url}">')
+    get_image.short_description = "Изображение"
