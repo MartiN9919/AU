@@ -6,16 +6,19 @@ from .models import ModuleOrganization, ItTechnicsType
 @admin.register(ModuleOrganization)
 class ModuleOrganization(admin.ModelAdmin):
     list_display = (
+      
         'parent_id',
         'name',
-       
     )
     list_filter = ('name',)
     list_per_page = 30
 
+
     class Meta:
         verbose_name_plural = 'Организации'
         verbose_name = 'Организации'
+    
+  
 
 @admin.register(ItTechnicsType)
 class ItTechnicsType(admin.ModelAdmin):

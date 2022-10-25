@@ -83,6 +83,8 @@ class ItTechnicsModels(models.Model):
         verbose_name='Окончание ПО КАНОЭ',
         null=True,
     )
+
+ 
     class Meta:
         verbose_name = "Технику"
         verbose_name_plural = "Техника"
