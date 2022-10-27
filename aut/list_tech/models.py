@@ -1,7 +1,5 @@
 from django.db import models
-
-
-
+from django.contrib import admin
 
 # Create your models here.
 
@@ -11,7 +9,7 @@ class ItTechnicsType(models.Model):
         primary_key=True,
         verbose_name='id',
         db_column = 'id',
-        
+
     )
     name= models.CharField(
         max_length=60,
@@ -22,6 +20,7 @@ class ItTechnicsType(models.Model):
     def __str__(self):
         return self.name
     
+
     class Meta:
         verbose_name = "Тип техники"
         verbose_name_plural = "Тип техники"
