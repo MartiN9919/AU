@@ -43,7 +43,7 @@ class ItTechnicsModels(models.Model):
         verbose_name='В/Ч',
         on_delete=models.CASCADE,
         null=True,
-
+        related_name='organizations'    
     )
     SIZES = (
                 ('Отсутствует', 'Отсутствует'),
