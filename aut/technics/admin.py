@@ -14,11 +14,18 @@ def get_report(modeladmin,request, queryset):
     qs = queryset.values('id', 'type__name', 'id_name', 'organization__name')
     doc = Document()
     table = doc.add_table(rows=1, cols=len(qs[0]))
+    row = table.rows[0]
+    row.cells[0].text = 'ID'
+    row.cells[1].text = 'Наименование техники'
+    row.cells[2].text = 'Инвентарный номер'
+    row.cells[3].text = 'Подразделение'
     for query in qs:
         row_cells = table.add_row().cells
         for i, value in enumerate(query.values()):
             row_cells[i].text = str(value)
+
     doc.save("test2.docx")
+    messages.add_message(request, messages.INFO, "Отчет сформирован")
 
 
 @admin.register(ItTechnicsModels)
