@@ -1,5 +1,5 @@
 from django.db import models
-
+from docx import Document
 from list_tech.models import ModuleOrganization, ItTechnicsType
 
 
@@ -14,6 +14,7 @@ class ItTechnicsModels(models.Model):
         on_delete=models.CASCADE,
         db_column='name',
         verbose_name='Тип',
+        related_name='type'
     
     )
     id_name = models.CharField(
@@ -43,7 +44,7 @@ class ItTechnicsModels(models.Model):
         verbose_name='В/Ч',
         on_delete=models.CASCADE,
         null=True,
-
+        related_name='organization'    
     )
     SIZES = (
                 ('Отсутствует', 'Отсутствует'),
@@ -61,7 +62,6 @@ class ItTechnicsModels(models.Model):
         verbose_name='Изъятие WIFI',
         null=True,
     )
-
 
 
     img = models.ImageField(
@@ -88,3 +88,5 @@ class ItTechnicsModels(models.Model):
     class Meta:
         verbose_name = "Технику"
         verbose_name_plural = "Техника"
+
+

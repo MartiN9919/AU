@@ -4,9 +4,9 @@ from .models import ModuleOrganization, ItTechnicsType
 # Register your models here.
 
 @admin.register(ModuleOrganization)
-class ModuleOrganization(admin.ModelAdmin):
+class ModuleOrganizationAdmin(admin.ModelAdmin):
     list_display = (
-      
+     
         'parent_id',
         'name',
     )
@@ -21,7 +21,7 @@ class ModuleOrganization(admin.ModelAdmin):
   
 
 @admin.register(ItTechnicsType)
-class ItTechnicsType(admin.ModelAdmin):
+class ItTechnicsTypeAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'name',
